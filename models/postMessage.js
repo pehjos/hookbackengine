@@ -15,7 +15,7 @@ const postSchema = mongoose.Schema({
     description:String,
     image:String,
     video:String,
-    tags: [String],
+    tags: String,
     likes: {
         type: [String],
         default:[],
