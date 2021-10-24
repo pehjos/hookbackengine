@@ -24,7 +24,7 @@ app.use(cors({
 // rmdir /s .git
 app.use('/posts', postRoutes);
 app.use("/user", userRoutes);
-app.get('/', cors ,(req, res) => {
+app.get('/' ,(req, res) => {
 res.send('heello hook back is working')
   
 })
