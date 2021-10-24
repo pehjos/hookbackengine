@@ -24,10 +24,9 @@ app.use(cors({
 // rmdir /s .git
 app.use('/posts', postRoutes);
 app.use("/user", userRoutes);
-app.get('/', (req, res) => {
+app.get('/', cors ,(req, res) => {
 res.send('heello hook back is working')
- res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  
 })
 
 const PORT = process.env.PORT|| 5000;
