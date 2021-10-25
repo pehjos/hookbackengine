@@ -15,8 +15,7 @@ app.use(cors())
 
 
 app.use((req,res, next)=>{
-  res.header("Access-Control-Allow-Origin", "https://api.cloudinary.com/v1_1/pehjos-inc/video/upload");
-   res.header("Access-Control-Allow-Origin", "https://api.cloudinary.com/v1_1/pehjos-inc/image/upload");
+ 
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
   res.header("Access-Control-Allow-Headers", req.header('access-control-request-headers'));
