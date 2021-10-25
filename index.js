@@ -11,8 +11,8 @@ const app = express();
  dotenv.config()
 
 app.use(cors())
-app.use(bodyParser.json({ limit: '30mb', extended: true }))
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+
+
 
 app.use((req,res, next)=>{
   res.header("Access-Control-Allow-Origin", "https://api.cloudinary.com/v1_1/pehjos-inc/video/upload");
@@ -25,6 +25,8 @@ app.use((req,res, next)=>{
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
+app.use(bodyParser.json({ limit: '30mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 // uninitialize git repo
 // rmdir /s .git
 app.use('/posts', postRoutes);
