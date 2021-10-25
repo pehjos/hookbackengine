@@ -8,9 +8,11 @@ import userRoutes from './route/user.js';
 
 const app = express();
  dotenv.config()
+app.use(cors());
+app.options('*', cors()); // enable pre-flight app.use(bodyParser.json());
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
- app.use(cors())
+
     
 // app.use((req,res, next)=>{
 //   res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000/");
