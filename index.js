@@ -7,7 +7,7 @@ import postRoutes from './route/post.js';
 import userRoutes from './route/user.js';
 
 const app = express();
-app.use(cors());
+
  dotenv.config()
 
 app.options('*', cors()); // enable pre-flight app.use(bodyParser.json());
