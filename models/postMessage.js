@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
    user:String,
   status:String,
  photo:String,
+ comments: { type: [String], default: [] },
     accountType:String,
     title:String, 
     Tracks:String,
