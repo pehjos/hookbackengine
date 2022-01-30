@@ -9,7 +9,7 @@ export const getPosts = async (req, res) => {
     const { page } = req.query;
     
     try {
-        const LIMIT = 10;
+        const LIMIT = 1000;
         const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
     
         const total = await PostMessage.countDocuments({});
@@ -50,7 +50,7 @@ export const getPost = async (req, res) => {
 export const createPost = async (req, res) => {
     const post = req.body;
 
-    const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+    const newPostMessage = new PostMessage({ ...post, createdAt: new Date().toISOString() })
 
     try {
         await newPostMessage.save();
@@ -86,33 +86,11 @@ export const deletePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
     const { id } = req.params;
-
-    if (!req.userId) {
-        return res.json({ message: "Unauthenticated" });
-      }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
-    
+    const { userId } = req.body;
+console.log(userId,"the id")
     const post = await PostMessage.findById(id);
 
-    const index = post.likes.findIndex((id) => id ===String(req.userId));
-
-    if (index === -1) {
-      post.likes.push(req.userId);
-    } else {
-      post.likes = post.likes.filter((id) => id !== String(req.userId));
-    }
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
-    res.status(200).json(updatedPost);
-}
-
-export const commentPost = async (req, res) => {
-    const { id } = req.params;
-    const { value } = req.body;
-
-    const post = await PostMessage.findById(id);
-
-    post.comments.push(value);
+    post.likes.push(userId);
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
 
